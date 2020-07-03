@@ -22,7 +22,7 @@
 ![](../image/es_success.jpg)
 
 ### 1.3 Logstash安装启动
-* 根据配置说明创建一个文件logstash.conf，需要与项目中的配置文件配合，单配置文件如下
+* 根据配置说明创建一个文件logstash.conf，需要与项目中的配置文件配合，配置文件如下
 ```editorconfig
 input{
   tcp {
@@ -40,57 +40,6 @@ output {
 }
 ```
 * 进入到config文件夹下，运行bin/logstash -f logstash.conf以启动logstash;
-> //-f后可以接指定的配置文件，也可以是一个目录，它会自动将目录中的所有配置文件一起导入合成一个配置文件，实现多配置文件启动
-> //单文件：
-> /elk/logstash/bin/logstash -f /elk/logstash/wegconfig/log_elk.conf   &
-> //目录：
-> /elk/logstash/bin/logstash -f /elk/logstash/wegconfig  &
-* 多配置文件如下
-```editorconfig
-input {
- # 我们创建了两个微服务demo 所以建立两个不同的输入，将两个服务的日志分别输入到不同的索引中
-  tcp {
-    mode => "server"
-    host => "0.0.0.0"  # 允许任意主机发送日志
-    type => "elk1"      # 设定type以区分每个输入源
-    port => 4567      
-    codec => json_lines    # 数据格式
-  }
-  tcp {
-    mode => "server"
-    host => "0.0.0.0"
-    type => "elk2"
-    port => 4667
-    codec => json_lines
-  }
-
-}
-filter {
-  #Only matched data are send to output.
-}
-output {
-  # For detail config for elasticsearch as output,
-  # See: https://www.elastic.co/guide/en/logstash/current/plugins-outputs-elasticsearch.html
-
-  if [type] == "elk1" { //根据type类型过滤，排除不需要保存的输入
-    elasticsearch {
-      action => "index"          # 输出时创建映射
-      hosts  => "127.0.0.1:9200"   # ElasticSearch 的地址和端口
-      index  => "elk1"         # 指定索引名 
-      codec  => "json"
-     }
-  }
-  if [type] == "elk2" {
-    elasticsearch {
-      action => "index"          #es要执行的动作 index, delete, create, update
-      hosts  => "127.0.0.1:9200"   #ElasticSearch host, can be array.
-      index  => "elk2"         #The index to write data to.
-      codec  => "json"
-     }
-  }
-}
-```
-
 ### 1.4 kibana安装与启动
 * 在编辑器中打开config/kibana.yml，本测试项目打开如下配置：
 ```yaml
@@ -119,7 +68,8 @@ elasticsearch.hosts: ["http://localhost:9200"]
     <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
         <destination>127.0.0.1:4560</destination>
         <!-- 日志输出编码 -->
-        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+        <encoder charset="UTF-8"
+                class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
             <providers>
                 <timestamp>
                     <timeZone>UTC</timeZone>
@@ -155,9 +105,8 @@ elasticsearch.hosts: ["http://localhost:9200"]
 Logstash安装启动**配置文件中的**output-index**中设置的输出文件名
 * 标记3：index pattern是针对标记4列表中的日志文件建立索引
 
+
 ## 参考文档
 * [微服务中的日志管理 — ELK](https://blog.csdn.net/peterwanghao/article/details/86595765)
 * [SpringBoot使用ELK日志收集](https://my.oschina.net/u/3480797/blog/3020716)
-* [SpringBoot配置ELK日志分析系统搭建](https://blog.csdn.net/weixin_43184769/article/details/84971532)
-* [Logstash 基础入门](https://www.cnblogs.com/moonlightL/p/7760512.html)
-* [logstash7.x官网资料](https://www.elastic.co/guide/en/logstash/7.x/configuration-file-structure.html)
+

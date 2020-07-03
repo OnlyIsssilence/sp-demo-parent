@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.muya</groupId>
-    <artifactId>sp-demo-elk</artifactId>
+    <artifactId>sp-demo-elk2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sp-demo-elk</name>
+    <name>sp-demo-elk2</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>

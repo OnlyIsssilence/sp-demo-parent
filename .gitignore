@@ -1,3 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 /.idea/
 /sp-demo-parent.iml
+/log/
+/log/test.log
+/elk-example.log

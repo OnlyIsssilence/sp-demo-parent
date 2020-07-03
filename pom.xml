@@ -21,6 +21,7 @@
     <modules>
         <module>sp-demo-reactor</module>
         <module>sp-demo-security</module>
+        <module>sp-demo-elk</module>
     </modules>
 
     <dependencies>
