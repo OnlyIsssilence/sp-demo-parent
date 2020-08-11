@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>sp-demo-parent</name>
     <description>Demo project for Spring Boot</description>
+    <packaging>pom</packaging>
 
     <properties>
         <java.version>1.8</java.version>
@@ -21,7 +22,7 @@
     <modules>
         <module>sp-demo-reactor</module>
         <module>sp-demo-security</module>
-        <module>sp-demo-elk</module>
+        <module>sp-demo-excel</module>
     </modules>
 
     <dependencies>
