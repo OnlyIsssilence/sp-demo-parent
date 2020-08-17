@@ -19,6 +19,8 @@
         <module>sp-demo-delay-queue</module>
         <module>sp-demo-quartz</module>
         <module>sp-demo-redismq</module>
+        <module>sp-demo-nettymq</module>
+        <module>sp-demo-rabbitmq</module>
     </modules>
 
     <properties>

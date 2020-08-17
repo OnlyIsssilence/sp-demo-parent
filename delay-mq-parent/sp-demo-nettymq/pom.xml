@@ -9,9 +9,9 @@
         <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.muya</groupId>
-    <artifactId>sp-demo-rabbitmq</artifactId>
+    <artifactId>sp-demo-nettymq</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>sp-demo-rabbitmq</name>
+    <name>sp-demo-nettymq</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -19,22 +19,25 @@
     </properties>
 
     <dependencies>
-
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.1.51.Final</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework.amqp/spring-rabbit -->
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-common -->
         <dependency>
-            <groupId>org.springframework.amqp</groupId>
-            <artifactId>spring-rabbit</artifactId>
-            <version>2.2.10.RELEASE</version>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-common</artifactId>
+            <version>4.1.51.Final</version>
         </dependency>
+
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
