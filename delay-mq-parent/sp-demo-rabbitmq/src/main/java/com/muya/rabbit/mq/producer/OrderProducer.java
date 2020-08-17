@@ -22,7 +22,7 @@ public class OrderProducer {
     public void sendOrder(String orderId) {
         template.convertAndSend(OrderQueueConfig.ORDER_EXCHANGE, OrderQueueConfig.ORDER_QUEUE, orderId, message -> {
             // 设置超时时间 3000ms
-            message.getMessageProperties().setExpiration("3000");
+            message.getMessageProperties().setExpiration("30000");
             return message;
         });
     }
