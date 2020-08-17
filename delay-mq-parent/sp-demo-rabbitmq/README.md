@@ -13,7 +13,7 @@
 - DLX(dead letter exchanges):RabbitMQ的Queue可以配置x-dead-letter-exchange和x-dead-letter-routing-key（可选）两个参数，
 如果队列内出现了dead letter，则按照这两个参数重新路由转发到指定的队列。 x-dead-letter-exchange：出现dead letter之后将dead 
 letter重新发送到指定exchange x-dead-letter-routing-key：出现dead letter之后将dead letter重新按照指定的routing-key发送 
-队列出现dead letter的情况有： 
+ 队列出现dead letter的情况有：
 > 消息或者队列的TTL过期 
 > 队列达到最大长度 
 > 消息被消费端拒绝（basic.reject or basic.nack）并且requeue=false
@@ -32,6 +32,8 @@ letter重新发送到指定exchange x-dead-letter-routing-key：出现dead lette
 
 
 ## 参考文章
-* [windows10环境下的RabbitMQ安装步骤（图文）](https://www.cnblogs.com/saryli/p/9729591.html)
-* [使用rabbitmq 实现延迟消费](https://blog.csdn.net/zhuchunyan_aijia/article/details/80243454)
-* [RabbitMQ 延迟队列](https://github.com/shuyuan1992/spring-boot-rabbitmq)
+* [1.windows10环境下的RabbitMQ安装步骤（图文）](https://www.cnblogs.com/saryli/p/9729591.html)
+* [2.使用rabbitmq 实现延迟消费](https://blog.csdn.net/zhuchunyan_aijia/article/details/80243454)
+* [3.RabbitMQ 延迟队列](https://github.com/shuyuan1992/spring-boot-rabbitmq)
+* [4.CentOS7.X下安装RabbitMQ(配合5设置开机自启动)](https://www.cnblogs.com/fengyumeng/p/11133924.html)
+* [5.CentOS7.X设置rabbit自动启动](https://blog.csdn.net/u010289197/article/details/100759639)
