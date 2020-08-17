@@ -30,6 +30,37 @@ letter重新发送到指定exchange x-dead-letter-routing-key：出现dead lette
 ### 3.延时队列实现方案
 - 设置了TTL规则之后当消息在一个队列中变成死信时，利用DLX特性它能被重新转发到另一个Exchange或者Routing Key，这时候消息就可以重新被消费了
 
+### 4.启动mq
+- windows:sbin/rabbitmq-server.bat
+- linux:参考 **CentOS7.X下安装RabbitMQ(配合5设置开机自启动)**
+
+### 5.消息确认与重发
+发送消息确认：用来确认生产者 producer 将消息发送到 broker ，broker 上的交换机 exchange 再投递给队列 queue的过程中，消息是否成功投递
+- 消息从 producer 到 rabbitmq broker有一个 confirmCallback 确认模式。
+- 消息从 exchange 到 queue 投递失败有一个 returnCallback 退回模式。
+- 我们可以利用这两个Callback来确保消的100%送达。
+#### 5.1 消息发送确认
+- ConfirmCallback确认模式：消息只要被 rabbitmq broker 接收到就会触发 confirmCallback回调，实现接口 ConfirmCallback ，
+重写其confirm()方法。但消息被 broker 接收到只能表示已经到达 MQ服务器，并不能保证消息一定会被投递到目标 queue 里。所以接下
+来需要用到 returnCallback
+-  ReturnCallback 退回模式：如果消息未能投递到目标 queue 里将触发回调 returnCallback ，一旦向 queue 投递消息未成功，这里
+一般会记录下当前消息的详细投递数据，方便后续做重发或者补偿等操作，实现接口ReturnCallback，重写 returnedMessage() 方法
+#### 5.2 消息发送确认
+消息接收确认要比消息发送确认简单一点，因为只有一个消息回执（ack）的过程。使用@RabbitHandler注解标注的方法要增加 channel
+(信道)、message 两个参数。消费消息有三种回执方法，我们来分析一下每种方法的含义
+- basicAck:表示成功确认，使用此回执方法后，消息会被rabbitmq broker 删除。
+> deliveryTag：表示消息投递序号，每次消费消息或者消息重新投递后，deliveryTag都会增加。手动消息确认模式下，我们可以对指定
+deliveryTag的消息进行ack、nack、reject等操作。
+> multiple：是否批量确认，值为 true 则会一次性 ack所有小于当前消息 deliveryTag 的消息。
+- basicNack:表示失败确认，一般在消费消息业务异常时用到此方法，可以将消息重新投递入队列
+> deliveryTag：表示消息投递序号。
+> multiple：是否批量确认。
+> requeue：值为 true 消息将重新入队列。
+- basicReject:拒绝消息，与basicNack区别在于不能进行批量操作，其他用法很相似
+> deliveryTag：表示消息投递序号;
+> requeue：值为 true 消息将重新入队列
+
+
 
 ## 参考文章
 * [1.windows10环境下的RabbitMQ安装步骤（图文）](https://www.cnblogs.com/saryli/p/9729591.html)
@@ -37,3 +68,5 @@ letter重新发送到指定exchange x-dead-letter-routing-key：出现dead lette
 * [3.RabbitMQ 延迟队列](https://github.com/shuyuan1992/spring-boot-rabbitmq)
 * [4.CentOS7.X下安装RabbitMQ(配合5设置开机自启动)](https://www.cnblogs.com/fengyumeng/p/11133924.html)
 * [5.CentOS7.X设置rabbit自动启动](https://blog.csdn.net/u010289197/article/details/100759639)
+* [6.Springboot + RabbitMQ 用了消息确认机制，感觉掉坑里了！](https://mp.weixin.qq.com/s/GL7MnQZJcl4Ff34XT00Kgg)
+* [7.RabbitMQ系列优秀博文文章](https://www.cnblogs.com/haixiang/p/10826710.html)
