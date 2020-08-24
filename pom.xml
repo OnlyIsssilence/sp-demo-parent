@@ -23,6 +23,7 @@
         <module>sp-demo-reactor</module>
         <module>sp-demo-security</module>
         <module>sp-demo-excel</module>
+        <module>multiple-dynamic-datasource-parent</module>
     </modules>
 
     <dependencies>
@@ -41,11 +42,11 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-       <!-- <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>4.1.2</version>
-        </dependency>-->
+        <!-- <dependency>
+             <groupId>org.apache.poi</groupId>
+             <artifactId>poi-ooxml</artifactId>
+             <version>4.1.2</version>
+         </dependency>-->
 
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -93,12 +94,17 @@
                 <version>5.3.10</version>
             </dependency>
 
-            <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-            <!-- <dependency>
-                 <groupId>org.apache.poi</groupId>
-                 <artifactId>poi-ooxml</artifactId>
-                 <version>4.1.2</version>
-             </dependency>-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>3.3.1</version>
+            </dependency>
+
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.20</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.apache.poi</groupId>
@@ -116,6 +122,13 @@
                 <artifactId>spring-webflux</artifactId>
                 <version>5.2.7.RELEASE</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.73</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

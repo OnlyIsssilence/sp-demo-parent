@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    dynamic:
+      hikari:
+        connection-timeout: 30000
+        max-lifetime: 1800000
+        max-pool-size: 15
+        min-idle: 5
+        connection-test-query: select 1
+        pool-name: TestHikariCP
+      primary: master
+      datasource:
+        master:
+          url: jdbc:mysql://rm-2ze637fn3mu1445zgqo.mysql.rds.aliyuncs.com:3306/mult-ds1?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+          username: dtsuser
+          password: Dtsuser123
+          driver-class-name: com.mysql.cj.jdbc.Driver
+        slave1:
+          url: jdbc:mysql://rm-2ze637fn3mu1445zgqo.mysql.rds.aliyuncs.com:3306/mult-ds2?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+          username: dtsuser
+          password: Dtsuser123
+          driver-class-name: com.mysql.cj.jdbc.Driver
