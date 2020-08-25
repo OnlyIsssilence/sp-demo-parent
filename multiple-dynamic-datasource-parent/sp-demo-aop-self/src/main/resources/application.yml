@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    druid:
+      #最大活跃连接数，默认8
+      max-active: 200
+      #最小空闲连接数
+      min-idle: 30
+      #初始连接数，默认0
+      initial-size: 20
+      #以上3个配置项，设置为0表示无限
+      #获取连接的最大等待时间（池中无空闲连接时最多等待多少ms），默认-1  一直等待，此处设置为30000ms，即30s
+      max-wait: 30000
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      db1:
+        url: jdbc:mysql://rm-2ze637fn3mu1445zgqo.mysql.rds.aliyuncs.com:3306/mult-ds1?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+        username: dtsuser
+        password: Dtsuser123
+        driver-class-name: com.mysql.cj.jdbc.Driver
+      db2:
+        url: jdbc:mysql://rm-2ze637fn3mu1445zgqo.mysql.rds.aliyuncs.com:3306/mult-ds2?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=GMT%2b8
+        username: dtsuser
+        password: Dtsuser123
+        driver-class-name: com.mysql.cj.jdbc.Driver
+
+    type: com.alibaba.druid.pool.DruidDataSource

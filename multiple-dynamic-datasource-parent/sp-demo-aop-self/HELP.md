@@ -1,9 +1,9 @@
-# Getting Started
+### 多数据源配置
 
-### Reference Documentation
-For further reference, please consider the following sections:
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.3.RELEASE/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.3.RELEASE/maven-plugin/reference/html/#build-image)
-
+#### 参考文档
+- [多数据源配置:类/方法级别,druid](https://github.com/applicationh/dynDataSource)
+- [springboot+druid+mybatis plus的多数据源配置](https://www.jianshu.com/p/ff5af6c59365)
+- [自定义注解以及处理起](https://www.cnblogs.com/peida/archive/2013/04/24/3036689.html)
+- [druid以及其他常用数据库连接池](https://www.cnblogs.com/lwh1019/p/12952520.html)
+- [druid监控面板:待补充](https://www.cnblogs.com/blog5277/p/10660689.html)
