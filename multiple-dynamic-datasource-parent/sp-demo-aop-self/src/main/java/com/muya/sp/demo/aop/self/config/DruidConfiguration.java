@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @Author: MuYa
  * @Date: 2020-08-24
  * @Time: 22:44
- * @Description:
+ * @Description: druid控制面板配置
  */
 @Configuration
 public class DruidConfiguration {
@@ -24,7 +24,7 @@ public class DruidConfiguration {
         // IP白名单
         servletRegistrationBean.addInitParameter("allow", "127.0.0.1");
         // IP黑名单(共同存在时，deny优先于allow)
-        servletRegistrationBean.addInitParameter("deny", "127.0.0.1");
+//        servletRegistrationBean.addInitParameter("deny", "127.0.0.1");
         //控制台管理用户
         servletRegistrationBean.addInitParameter("loginUsername", "admin");
         servletRegistrationBean.addInitParameter("loginPassword", "123456");
