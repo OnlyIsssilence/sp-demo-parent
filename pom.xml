@@ -24,6 +24,7 @@
         <module>sp-demo-security</module>
         <module>sp-demo-excel</module>
         <module>multiple-dynamic-datasource-parent</module>
+        <module>sp-demo-pdf</module>
     </modules>
 
     <dependencies>
