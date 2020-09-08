@@ -45,7 +45,7 @@ letter重新发送到指定exchange x-dead-letter-routing-key：出现dead lette
 来需要用到 returnCallback
 -  ReturnCallback 退回模式：如果消息未能投递到目标 queue 里将触发回调 returnCallback ，一旦向 queue 投递消息未成功，这里
 一般会记录下当前消息的详细投递数据，方便后续做重发或者补偿等操作，实现接口ReturnCallback，重写 returnedMessage() 方法
-#### 5.2 消息发送确认
+#### 5.2 消息接收确认
 消息接收确认要比消息发送确认简单一点，因为只有一个消息回执（ack）的过程。使用@RabbitHandler注解标注的方法要增加 channel
 (信道)、message 两个参数。消费消息有三种回执方法，我们来分析一下每种方法的含义
 - basicAck:表示成功确认，使用此回执方法后，消息会被rabbitmq broker 删除。

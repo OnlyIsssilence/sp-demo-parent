@@ -43,16 +43,35 @@ public class PdfController {
      *
      * @param name
      * @param font
-     * @param count 列数
+     * @param colspan 列数
      * @return
      */
-    private PdfPCell mergeCol(String name, Font font, int count) {
+    /**
+     * 组合单元格 组合的列
+     *
+     * @param name
+     * @param font
+     * @param colspan 列数
+     * @return
+     */
+    private PdfPCell mergeCol(String name, Font font, int colspan) {
+        return mergeColWithAlign(name, font, colspan, -1, Element.ALIGN_CENTER, Element.ALIGN_MIDDLE);
+    }
+
+    private PdfPCell mergeColWithAlign(String name, Font font, int colspan, int rowspan, int horizontalAlignment, int verticalAlignment) {
         PdfPCell pCell = new PdfPCell(new Paragraph(name, font));
-        pCell.setHorizontalAlignment(Element.ALIGN_CENTER);
-        pCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        pCell.setHorizontalAlignment(horizontalAlignment);
+        pCell.setVerticalAlignment(verticalAlignment);
         // 占多少行
-        pCell.setColspan(count);
-        pCell.setMinimumHeight(25);
+        if (-1 != rowspan) {
+            pCell.setRowspan(rowspan);
+        }
+
+        // 占多少列
+        if (-1 != colspan) {
+            pCell.setColspan(colspan);
+        }
+        pCell.setMinimumHeight(40);
 
         return pCell;
     }
@@ -189,7 +208,7 @@ public class PdfController {
     }
 
     @GetMapping(path = "/print")
-    public void print(HttpServletResponse response) throws Exception {
+    public void  print(HttpServletResponse response) throws Exception {
         ByteArrayOutputStream ba = getPrintPdfString();
 
         String fileNamePrefix = UUID.randomUUID().toString();
@@ -204,4 +223,109 @@ public class PdfController {
         out.flush();
         out.close();
     }
+
+    @GetMapping(path = "/myJob")
+    public void myJob(HttpServletResponse response) throws Exception {
+        ByteArrayOutputStream ba = getMyJob();
+
+        String fileNamePrefix = UUID.randomUUID().toString();
+        String fileName = fileNamePrefix + ".pdf";
+
+        response.setContentType("application/pdf;charset=UTF-8");
+        response.setHeader("Content-Disposition", "filename=" + new String((fileName).getBytes(), "iso8859-1"));
+
+        OutputStream out = response.getOutputStream();
+        out.write(ba.toByteArray());
+
+        out.flush();
+        out.close();
+    }
+
+    private ByteArrayOutputStream getMyJob() throws IOException, DocumentException {
+
+        // 1.新建documnet对象
+        Document doc = new Document(PageSize.A4, 0, 0, 50, 0);
+        ByteArrayOutputStream fos = new ByteArrayOutputStream();
+        PdfWriter.getInstance(doc, fos);
+
+        // 字体设置
+        BaseFont baseFont = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
+
+
+        // 创建字体对象
+        Font font = new Font(baseFont, 14, Font.NORMAL);
+        Font font2 = new Font(baseFont, 21, Font.BOLD);
+
+        /**
+         *  添加12列表格
+         */
+        PdfPTable table = new PdfPTable(12);
+
+        // 设置各列列宽
+        table.setTotalWidth(new float[]{150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150});
+
+        // 第一行：表头
+        PdfPCell pCell = new PdfPCell(new Paragraph("项目名称-物业维修单", font2));
+        pCell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        pCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        pCell.setRowspan(3);
+        pCell.setColspan(12);
+        pCell.setMinimumHeight(60);
+        table.addCell(pCell);
+
+        // 第二行：服务单编号  报修时间
+        table.addCell(mergeColWithAlign("服务单编号:", font, 6, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("保修时间: ", font, 6, -1, Element.ALIGN_RIGHT, Element.ALIGN_MIDDLE));
+
+        // 第三行 报修人，联系电话，维修种类
+        table.addCell(mergeColWithAlign("报修人: ", font, 4, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("联系电话: ", font, 4, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("维修种类: ", font, 4, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        // 第四行 服务地址
+        table.addCell(mergeColWithAlign("服务地址", font, 3, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("", font, 9, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        // 第五行 服务内容
+        table.addCell(mergeColWithAlign("服务内容", font, 3, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("", font, 9, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        // 第六行 到达时间 完成时间
+        table.addCell(mergeColWithAlign("到达时间：", font, 6, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("完成时间：", font, 6, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+
+        // 第七行 维修完成内容
+        table.addCell(mergeColWithAlign("维修完成内容", font, 3, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("", font, 9, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+
+        // 第八行 费用，材料，数量
+        PdfPCell eightCell = new PdfPCell(new Paragraph("费用/材料/数量", font));
+        eightCell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        eightCell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        eightCell.setRowspan(2);
+        eightCell.setColspan(3);
+        table.addCell(eightCell);
+
+        table.addCell(mergeColWithAlign("费用", font, 3, -1, Element.ALIGN_MIDDLE, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("材料", font, 3, -1, Element.ALIGN_MIDDLE, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("数量", font, 3, -1, Element.ALIGN_MIDDLE, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("", font, 3, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("", font, 3, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("", font, 3, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+
+        // 第九行 服务评价
+        table.addCell(mergeColWithAlign("服务评价", font, 3, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("口 满意          口 一般          口 不满意", font, 9, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+
+        // 第十行 维修人，订单人，订单时间
+        table.addCell(mergeColWithAlign("维修人：", font, 4, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("打单人：", font, 4, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+        table.addCell(mergeColWithAlign("打单时间：", font, 4, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+
+        // 第十一行 业主签字
+        table.addCell(mergeColWithAlign("业主签字:                          ", font, 12, -1, Element.ALIGN_LEFT, Element.ALIGN_MIDDLE));
+
+        doc.open();
+        doc.add(table);
+        doc.close();
+        return fos;
+    }
+
 }

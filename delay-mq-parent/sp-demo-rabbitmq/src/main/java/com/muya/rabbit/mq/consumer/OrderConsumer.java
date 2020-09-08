@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -24,7 +23,7 @@ import java.io.IOException;
 public class OrderConsumer {
 
     @RabbitHandler
-    @RabbitListener(queues = OrderQueueConfig.ORDER_TIMEOUT_QUEUE, concurrency = "4-10")
+    @RabbitListener(queues = OrderQueueConfig.ORDER_TIMEOUT_QUEUE, concurrency = "10-20")
     public void processHandler(String msg, Channel channel, Message message) throws IOException {
 
         try {
