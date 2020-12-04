@@ -11,7 +11,7 @@ import org.springframework.messaging.Message;
  * @Author: MuYa
  * @Date: 2020-08-18
  * @Time: 14:16
- * @Description: 处理事务消息的监听和回查
+ * @Description: 处理事务消息的监听和回查 {@link RocketMQLocalTransactionListener} 分布式事务
  */
 @RocketMQTransactionListener(txProducerGroup = "myTxProducerGroup", corePoolSize = 5, maximumPoolSize = 10)
 public class TransactionListenerImpl implements RocketMQLocalTransactionListener {
