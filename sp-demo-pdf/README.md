@@ -23,6 +23,25 @@
 #### 6.模板表单标签
 ![](image/tag.jpg)
 #### 7.标签绑定具体业务数据
+- pom依赖
+```xml
+<dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.10</version>
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext-asian</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+```
+- 具体实现
 ```java
 private ByteArrayOutputStream getYearData() {
         ClassPathResource classPathResource = new ClassPathResource("template/pdf-template.pdf");
@@ -73,7 +92,10 @@ private ByteArrayOutputStream getYearData() {
 ![](image/result.jpg)
 
 
-
 #### 参考文档
+- [java使用itext操作填充pdf模板，（根据一个模板生成多页数据）](https://blog.csdn.net/weixin_36049035/article/details/82909917)
+- [Java向PDF模板写入数据](https://my.oschina.net/aijiaoer0624/blog/1921113?tdsourcetag=s_pcqq_aiomsg)
+- [java之数据填充PDF模板](https://www.cnblogs.com/ywjfx/p/10908316.html)
+
 - [Java生成PDF文件](https://www.cnblogs.com/qlqwjy/p/8213989.html)
 - [office收费工具](https://www.e-iceblue.cn/licensing/install-spirepdf-for-java-from-maven-repository.html)
