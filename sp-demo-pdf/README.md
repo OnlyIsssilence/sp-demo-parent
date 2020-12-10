@@ -8,20 +8,20 @@
 - 效果展示
 
 #### 1.准备PDF,如下图
-[编辑后](image/simple.jpg)
+![编辑后](image/simple.jpg)
 #### 2.编辑PDF
-[](image/edit.jpg)
-[](image/edit1.jpg)
-[](image/edit2.jpg)
+![](image/edit.jpg)
+![](image/edit1.jpg)
+![](image/edit2.jpg)
 #### 3.准备表单
-[](image/prepare.jpg)
-[](image/prepare1.jpg)
+![](image/prepare.jpg)
+![](image/prepare1.jpg)
 #### 4.设置字体
-[](image/font.jpg)
+![](image/font.jpg)
 #### 5.设置多行
-[](image/multipleLine.jpg)
+![](image/multipleLine.jpg)
 #### 6.模板表单标签
-[](image/tag.jpg)
+![](image/tag.jpg)
 #### 7.标签绑定具体业务数据
 ```java
 private ByteArrayOutputStream getYearData() {
@@ -70,7 +70,7 @@ private ByteArrayOutputStream getYearData() {
     }
 ```
 #### 8.效果展示
-[](image/result.jpg)
+![](image/result.jpg)
 
 
 
