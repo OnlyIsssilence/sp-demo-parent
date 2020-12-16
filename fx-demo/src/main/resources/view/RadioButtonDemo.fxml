@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.muya.fx.demo.controller.RadioButtonDemoController">
+    <children>
+        <RadioButton layoutX="38.0" layoutY="69.0" mnemonicParsing="false" text="RadioButton1">
+            <toggleGroup>
+                <ToggleGroup fx:id="tg1"/>
+            </toggleGroup>
+        </RadioButton>
+        <RadioButton layoutX="216.0" layoutY="69.0" mnemonicParsing="false" text="RadioButton2" toggleGroup="$tg1"/>
+        <RadioButton layoutX="448.0" layoutY="69.0" mnemonicParsing="false" text="RadioButton3" toggleGroup="$tg1"/>
+    </children>
+</AnchorPane>

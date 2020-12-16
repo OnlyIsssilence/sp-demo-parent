@@ -9,8 +9,8 @@ import de.felixroske.jfxsupport.FXMLView;
  * @Author: MuYa
  * @Date: 2020-08-28
  * @Time: 22:55
- * @Description:
+ * @Description: anchor 指定主键在pane中的相对固定的位置，距离四周的的位置 适合做屏幕适配
  */
-@FXMLView(value = "/view/MainStage.fxml",title = "mainStage")
-public class MainStageView extends AbstractFxmlView {
+@FXMLView(value = "/view/GridPaneDemo.fxml")
+public class GridPaneDemoView extends AbstractFxmlView {
 }

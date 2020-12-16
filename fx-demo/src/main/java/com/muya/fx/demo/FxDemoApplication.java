@@ -1,6 +1,7 @@
 package com.muya.fx.demo;
 
-import com.muya.fx.demo.view.MainStageView;
+import com.muya.fx.demo.view.ChoiceBoxDemoView;
+import com.muya.fx.demo.view.RadioButtonDemoView;
 import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -16,6 +17,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FxDemoApplication extends AbstractJavaFxApplicationSupport {
 
     public static void main(String[] args) {
-        launch(FxDemoApplication.class, MainStageView.class, args);
+        launch(FxDemoApplication.class, ChoiceBoxDemoView.class, args);
     }
 }

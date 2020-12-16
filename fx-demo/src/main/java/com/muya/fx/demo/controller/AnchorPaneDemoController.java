@@ -1,9 +1,7 @@
 package com.muya.fx.demo.controller;
 
-import com.muya.fx.demo.view.GridPaneDemoView;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.fxml.Initializable;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,7 +15,7 @@ import java.util.ResourceBundle;
  * @Description:
  */
 @FXMLController
-public class MainStageController implements Initializable {
+public class AnchorPaneDemoController implements Initializable {
 
     /**
      * Called to initialize a controller after its root element has been
@@ -27,11 +25,8 @@ public class MainStageController implements Initializable {
      *                  <tt>null</tt> if the location is not known.
      * @param resources The resources used to localize the root object, or <tt>null</tt> if
      */
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
 
     }
 }

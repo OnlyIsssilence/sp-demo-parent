@@ -1,9 +1,12 @@
 package com.muya.fx.demo.controller;
 
-import com.muya.fx.demo.view.GridPaneDemoView;
 import de.felixroske.jfxsupport.FXMLController;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.Initializable;
-import org.springframework.beans.factory.annotation.Autowired;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,7 +20,9 @@ import java.util.ResourceBundle;
  * @Description:
  */
 @FXMLController
-public class MainStageController implements Initializable {
+public class RadioButtonDemoController implements Initializable {
+
+    public ToggleGroup tg1;
 
     /**
      * Called to initialize a controller after its root element has been
@@ -27,11 +32,15 @@ public class MainStageController implements Initializable {
      *                  <tt>null</tt> if the location is not known.
      * @param resources The resources used to localize the root object, or <tt>null</tt> if
      */
-
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
+        tg1.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observable, Toggle oldValue, Toggle newValue) {
+                RadioButton radioButton = (RadioButton) newValue;
+                System.out.println(radioButton.getText() + ":" + radioButton.isSelected());
+            }
+        });
     }
 }

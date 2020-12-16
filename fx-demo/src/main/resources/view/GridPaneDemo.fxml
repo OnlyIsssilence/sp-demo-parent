@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ButtonType?>
+<?import javafx.scene.control.DialogPane?>
+<DialogPane contentText="ssss" headerText="ffff" maxHeight="126.0" maxWidth="406.0" minHeight="126.0" minWidth="406.0"
+            prefHeight="126.0" prefWidth="406.0" scaleShape="false" xmlns="http://javafx.com/javafx/8.0.172-ea"
+            xmlns:fx="http://javafx.com/fxml/1" >
+    <buttonTypes>
+        <ButtonType fx:constant="CANCEL"/>
+        <ButtonType fx:constant="FINISH"/>
+    </buttonTypes>
+</DialogPane>
