@@ -1,0 +1,72 @@
+server:
+  port: 23333
+spring:
+  application:
+    name: sp-demo-tables
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+
+datasource:
+  default:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-2ze637fn3mu1445zgqo.mysql.rds.aliyuncs.com:3306/test?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+    username: dtsuser
+    password: Dtsuser123
+    test-on-borrow: false
+    test-while-idle: true
+    time-between-eviction-runs-millis: 18800
+    filters: mergeStat,wall,slf4j
+    connectionProperties: druid.stat.slowSqlMillis=2000
+    validationQuery: SELECT 1
+    poolPreparedStatements: true
+  user:
+    master:
+      user1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://rm-2ze637fn3mu1445zgqo.mysql.rds.aliyuncs.com:3306/user_1?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+        username: dtsuser
+        password: Dtsuser123
+        test-on-borrow: false
+        test-while-idle: true
+        time-between-eviction-runs-millis: 18800
+        filters: mergeStat,wall,slf4j
+        connectionProperties: druid.stat.slowSqlMillis=2000
+        validationQuery: SELECT 1
+        poolPreparedStatements: true
+      user2:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://rm-2ze637fn3mu1445zgqo.mysql.rds.aliyuncs.com:3306/user_2?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+        username: dtsuser
+        password: Dtsuser123
+        test-on-borrow: false
+        test-while-idle: true
+        time-between-eviction-runs-millis: 18800
+        filters: mergeStat,wall,slf4j
+        connectionProperties: druid.stat.slowSqlMillis=2000
+        validationQuery: SELECT 1
+        poolPreparedStatements: true
+    slave:
+      user1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://rm-2ze637fn3mu1445zgqo.mysql.rds.aliyuncs.com:3306/user_slave_1?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+        username: dtsuser
+        password: Dtsuser123
+        test-on-borrow: false
+        test-while-idle: true
+        time-between-eviction-runs-millis: 18800
+        filters: mergeStat,wall,slf4j
+        connectionProperties: druid.stat.slowSqlMillis=2000
+        validationQuery: SELECT 1
+        poolPreparedStatements: true
+      user2:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://rm-2ze637fn3mu1445zgqo.mysql.rds.aliyuncs.com:3306/user_slave_2?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2b8&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+        username: dtsuser
+        password: Dtsuser123
+        test-on-borrow: false
+        test-while-idle: true
+        time-between-eviction-runs-millis: 18800
+        filters: mergeStat,wall,slf4j
+        connectionProperties: druid.stat.slowSqlMillis=2000
+        validationQuery: SELECT 1
+        poolPreparedStatements: true
