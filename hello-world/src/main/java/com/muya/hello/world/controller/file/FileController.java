@@ -1,10 +1,13 @@
-package com.muya.hello.world;
+package com.muya.hello.world.controller.file;
 
+import com.muya.hello.world.WorldUtils;
+import com.muya.hello.world.entity.UserVo;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.UUID;
 
 /**
  * Copyright 2020 OnlySilence, Inc. All rights reserved.
@@ -16,31 +19,21 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("test")
-public class TestController {
-
-    @ResponseBody
-    @RequestMapping("hello")
-    public String hello() {
-        return "hello" + UUID.randomUUID().toString();
-    }
-
+@Api(tags = "文件操作")
+public class FileController {
     /**
-     * 下载年度报告签名的excel文件
-     *
-     * @param userId
-     * @param id     年度报告id
      * @return
      */
+    @ApiOperation(value = "导入导出", notes = "备注")
     @ResponseBody
-    @RequestMapping("exportWorldYear")
+    @PostMapping("exportWorldYear")
     public void exportWorldYear(
+            @RequestBody UserVo userVo,
             HttpServletResponse response,
             HttpServletRequest request) {
         WorldUtils.doc2pdf("test", response);
 
     }
-
-
 
 
 }
